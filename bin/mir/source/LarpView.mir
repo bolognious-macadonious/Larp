@@ -1,0 +1,458 @@
+[ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 1; ]
+import Toybox.Graphics;
+[ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 2; ]
+import Toybox.WatchUi;
+[ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 3; ]
+import Toybox.Lang;
+[ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 4; ]
+import Toybox.Timer;
+[ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 5; ]
+import Toybox.Application;
+[ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 8; ]
+class LarpView extends WatchUi.View{
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 8; ]
+    <init> {
+    }
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 8; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 9; @position = 16; ]
+    private
+    var _TimerdelayElement;
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 10; @position = 16; ]
+    private
+    var _currentTimerElement;
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 11; @position = 16; ]
+    private
+    var _RepsElement;
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 12; @position = 16; ]
+    private
+    var _totalTimeElement;
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 13; @position = 16; ]
+    private
+    var countdownTimer as Timer.Timer;
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 14; @position = 16; ]
+    private
+    var countdownTime as Number;
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 15; @position = 16; ]
+    private
+    var secondTimerTime as Number;
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 17; ]
+    function initialize() as Void {
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_17_27_start:
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 18 8 ]
+        %tmp.2 = getv ? :View;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 19 8 ]
+        %tmp.6 = getm $.Toybox.Timer;
+        %tmp.7 = getv function ? %tmp.6 :Timer;
+        %tmp.4 = newc %tmp.7 ();
+        putv self :countdownTimer %tmp.4;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 20 8 ]
+        %tmp.8 = 30000;
+        putv self :countdownTime %tmp.8;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 21 8 ]
+        %tmp.9 = 60000;
+        putv self :secondTimerTime %tmp.9;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_17_27_stop:
+    }
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 23; ]
+    function onLayout(dc as Dc) as Void {
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_23_40_start:
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 24 4 ]
+        %tmp.1 = self;
+        %tmp.2 = getv function %tmp.1 :setLayout;
+        %tmp.4 = getv ? :Rez;
+        %tmp.5 = getv %tmp.4 :Layouts;
+        %tmp.6 = getv function %tmp.5 :MainLayout;
+        %tmp.8 = lgetv %dc;
+        %tmp.9 = invoke %tmp.5 %tmp.6(%tmp.8);
+        invoke %tmp.1 %tmp.2(%tmp.9);
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 26 4 ]
+        %tmp.10 = self;
+        %tmp.11 = getv function %tmp.10 :findDrawableById;
+        %tmp.12 = "Timer_delay";
+        %tmp.13 = invoke %tmp.10 %tmp.11(%tmp.12);
+        %tmp.14 = as %tmp.13 WatchUi.Label;
+        putv self :_TimerdelayElement %tmp.14;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 27 4 ]
+        %tmp.15 = self;
+        %tmp.16 = getv function %tmp.15 :findDrawableById;
+        %tmp.17 = "Current_timer";
+        %tmp.18 = invoke %tmp.15 %tmp.16(%tmp.17);
+        %tmp.19 = as %tmp.18 WatchUi.Label;
+        putv self :_currentTimerElement %tmp.19;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 28 4 ]
+        %tmp.20 = self;
+        %tmp.21 = getv function %tmp.20 :findDrawableById;
+        %tmp.22 = "Reps";
+        %tmp.23 = invoke %tmp.20 %tmp.21(%tmp.22);
+        %tmp.24 = as %tmp.23 WatchUi.Label;
+        putv self :_RepsElement %tmp.24;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 29 4 ]
+        %tmp.25 = self;
+        %tmp.26 = getv function %tmp.25 :findDrawableById;
+        %tmp.27 = "Total_time";
+        %tmp.28 = invoke %tmp.25 %tmp.26(%tmp.27);
+        %tmp.29 = as %tmp.28 WatchUi.Label;
+        putv self :_totalTimeElement %tmp.29;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 31 8 ]
+        %tmp.30 = self;
+        %tmp.31 = getv function %tmp.30 :setTimerDisplay;
+        %tmp.32 = 3;
+        %tmp.34 = getv ? :_TimerdelayElement;
+        invoke %tmp.30 %tmp.31(%tmp.32, %tmp.34);
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 32 8 ]
+        %tmp.35 = self;
+        %tmp.36 = getv function %tmp.35 :setTotalTimeValue;
+        %tmp.37 = 1329392;
+        invoke %tmp.35 %tmp.36(%tmp.37);
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 33 8 ]
+        %tmp.38 = self;
+        %tmp.39 = getv function %tmp.38 :setCurrentTimeValue;
+        %tmp.40 = 13087;
+        invoke %tmp.38 %tmp.39(%tmp.40);
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 34 8 ]
+        %tmp.41 = self;
+        %tmp.42 = getv function %tmp.41 :updateRepsValue;
+        %tmp.43 = 7;
+        invoke %tmp.41 %tmp.42(%tmp.43);
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 37 8 ]
+        %tmp.45 = getv ? :countdownTimer;
+        %tmp.46 = getv function %tmp.45 :start;
+        %tmp.47 = self;
+        %tmp.48 = getv function %tmp.47 :method;
+        %tmp.50 = const :countdownCallback;
+        %tmp.51 = invoke %tmp.47 %tmp.48(%tmp.50);
+        %tmp.52 = 1000;
+        %tmp.53 = true;
+        invoke %tmp.45 %tmp.46(%tmp.51, %tmp.52, %tmp.53);
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_23_40_stop:
+    }
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 43; ]
+    function onShow() as Void {
+    }
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 47; ]
+    function onUpdate(dc as Dc) as Void {
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_47_40_start:
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 49 8 ]
+        %tmp.2 = getv ? :View;
+        %tmp.3 = getv function %tmp.2 :onUpdate;
+        %tmp.5 = lgetv %dc;
+        invoke %tmp.2 %tmp.3(%tmp.5);
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_47_40_stop:
+    }
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 55; ]
+    function onHide() as Void {
+    }
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 58; ]
+    function countdownCallback() as Void {
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_58_41_start:
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 59 8 ]
+        %tmp.1 = getv self :countdownTime;
+        %tmp.2 = 1000;
+        %tmp.3 = sub %tmp.1 %tmp.2;
+        putv self :countdownTime dup %tmp.3;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 61 8 ]
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_61_8_if_stmt:
+        %tmp.5 = getv ? :countdownTime;
+        %tmp.6 = 0;
+        %tmp.7 = lte %tmp.5 %tmp.6;
+        bf %tmp.7 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_61_8_if_end;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_61_8_if_true:
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_61_32_start:
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 62 12 ]
+        %tmp.9 = getv ? :secondTimerTime;
+        putv self :countdownTime %tmp.9;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 63 12 ]
+        %tmp.11 = getv ? :countdownTimer;
+        %tmp.12 = getv function %tmp.11 :start;
+        %tmp.13 = self;
+        %tmp.14 = getv function %tmp.13 :method;
+        %tmp.16 = const :countdownCallback;
+        %tmp.17 = invoke %tmp.13 %tmp.14(%tmp.16);
+        %tmp.18 = 1000;
+        %tmp.19 = true;
+        invoke %tmp.11 %tmp.12(%tmp.17, %tmp.18, %tmp.19);
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_61_32_stop:
+        goto @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_61_8_if_end;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_61_8_if_end:
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 66 8 ]
+        %tmp.20 = self;
+        %tmp.21 = getv function %tmp.20 :setCurrentTimeValue;
+        %tmp.23 = getv ? :countdownTime;
+        invoke %tmp.20 %tmp.21(%tmp.23);
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 67 8 ]
+        %tmp.24 = self;
+        %tmp.25 = getv function %tmp.24 :setTimerDisplay;
+        %tmp.27 = getv ? :countdownTime;
+        %tmp.29 = getv ? :_TimerdelayElement;
+        invoke %tmp.24 %tmp.25(%tmp.27, %tmp.29);
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_58_41_stop:
+    }
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 70; ]
+    function setTimerDisplay(value as Number, labelElement as WatchUi.Label) as Void {
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_70_85_start:
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 71 8 ]
+        [ "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_70_85_start" "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_70_85_stop" ]
+        %seconds.1 = local;
+        %tmp.2 = lgetv %value;
+        %tmp.3 = 1000;
+        %tmp.4 = div %tmp.2 %tmp.3;
+        lputv %seconds.1 %tmp.4;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 72 8 ]
+        [ "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_70_85_start" "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_70_85_stop" ]
+        %formattedTime.2 = local;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_72_29_begin:
+        %tmp.6 = lgetv %seconds.1;
+        %tmp.7 = 10;
+        %tmp.8 = lt %tmp.6 %tmp.7;
+        bf %tmp.8 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_72_29_false;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_72_29_true:
+        %tmp.9 = "0";
+        push %tmp.9;
+        goto @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_72_29_end;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_72_29_false:
+        %tmp.10 = "";
+        push %tmp.10;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_72_29_end:
+        %tmp.11 = phi [%tmp.8 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_72_29_begin] [%tmp.9 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_72_29_true] [%tmp.10 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_72_29_false] [%tmp.11 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_72_29_end];
+        %tmp.12 = lgetv %seconds.1;
+        %tmp.13 = getv function %tmp.12 :toString;
+        %tmp.14 = invoke %tmp.12 %tmp.13();
+        %tmp.15 = as %tmp.14 Toybox.WatchUi.Text;
+        %tmp.16 = add %tmp.11 %tmp.15;
+        lputv %formattedTime.2 %tmp.16;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_70_85_stop:
+    }
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 76; ]
+    function setTotalTimeValue(value as Number) as Void {
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_76_56_start:
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 78 4 ]
+        [ "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_76_56_start" "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_76_56_stop" ]
+        %totalSeconds.1 = local;
+        %tmp.2 = lgetv %value;
+        %tmp.3 = 1000;
+        %tmp.4 = div %tmp.2 %tmp.3;
+        lputv %totalSeconds.1 %tmp.4;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 79 4 ]
+        [ "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_76_56_start" "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_76_56_stop" ]
+        %hours.2 = local;
+        %tmp.6 = lgetv %totalSeconds.1;
+        %tmp.7 = 3600;
+        %tmp.8 = div %tmp.6 %tmp.7;
+        lputv %hours.2 %tmp.8;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 80 4 ]
+        [ "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_76_56_start" "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_76_56_stop" ]
+        %minutes.3 = local;
+        %tmp.10 = lgetv %totalSeconds.1;
+        %tmp.11 = 3600;
+        %tmp.12 = mod %tmp.10 %tmp.11;
+        %tmp.13 = 60;
+        %tmp.14 = div %tmp.12 %tmp.13;
+        lputv %minutes.3 %tmp.14;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 81 4 ]
+        [ "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_76_56_start" "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_76_56_stop" ]
+        %seconds.4 = local;
+        %tmp.16 = lgetv %totalSeconds.1;
+        %tmp.17 = 60;
+        %tmp.18 = mod %tmp.16 %tmp.17;
+        lputv %seconds.4 %tmp.18;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 84 4 ]
+        [ "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_76_56_start" "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_76_56_stop" ]
+        %formattedTime.5 = local;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_84_25_begin:
+        %tmp.20 = lgetv %hours.2;
+        %tmp.21 = 10;
+        %tmp.22 = lt %tmp.20 %tmp.21;
+        bf %tmp.22 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_84_25_false;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_84_25_true:
+        %tmp.23 = "0";
+        push %tmp.23;
+        goto @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_84_25_end;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_84_25_false:
+        %tmp.24 = "";
+        push %tmp.24;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_84_25_end:
+        %tmp.25 = phi [%tmp.22 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_84_25_begin] [%tmp.23 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_84_25_true] [%tmp.24 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_84_25_false] [%tmp.25 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_84_25_end];
+        %tmp.26 = lgetv %hours.2;
+        %tmp.27 = getv function %tmp.26 :toString;
+        %tmp.28 = invoke %tmp.26 %tmp.27();
+        %tmp.29 = add %tmp.25 %tmp.28;
+        %tmp.30 = ":";
+        %tmp.31 = add %tmp.29 %tmp.30;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_85_25_begin:
+        %tmp.33 = lgetv %minutes.3;
+        %tmp.34 = 10;
+        %tmp.35 = lt %tmp.33 %tmp.34;
+        bf %tmp.35 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_85_25_false;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_85_25_true:
+        %tmp.36 = "0";
+        push %tmp.36;
+        goto @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_85_25_end;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_85_25_false:
+        %tmp.37 = "";
+        push %tmp.37;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_85_25_end:
+        %tmp.38 = phi [%tmp.35 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_85_25_begin] [%tmp.36 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_85_25_true] [%tmp.37 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_85_25_false] [%tmp.38 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_85_25_end];
+        %tmp.39 = add %tmp.31 %tmp.38;
+        %tmp.40 = lgetv %minutes.3;
+        %tmp.41 = getv function %tmp.40 :toString;
+        %tmp.42 = invoke %tmp.40 %tmp.41();
+        %tmp.43 = add %tmp.39 %tmp.42;
+        %tmp.44 = ":";
+        %tmp.45 = add %tmp.43 %tmp.44;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_86_25_begin:
+        %tmp.47 = lgetv %seconds.4;
+        %tmp.48 = 10;
+        %tmp.49 = lt %tmp.47 %tmp.48;
+        bf %tmp.49 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_86_25_false;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_86_25_true:
+        %tmp.50 = "0";
+        push %tmp.50;
+        goto @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_86_25_end;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_86_25_false:
+        %tmp.51 = "";
+        push %tmp.51;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_86_25_end:
+        %tmp.52 = phi [%tmp.49 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_86_25_begin] [%tmp.50 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_86_25_true] [%tmp.51 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_86_25_false] [%tmp.52 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_86_25_end];
+        %tmp.53 = add %tmp.45 %tmp.52;
+        %tmp.54 = lgetv %seconds.4;
+        %tmp.55 = getv function %tmp.54 :toString;
+        %tmp.56 = invoke %tmp.54 %tmp.55();
+        %tmp.57 = add %tmp.53 %tmp.56;
+        lputv %formattedTime.5 %tmp.57;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 88 4 ]
+        %tmp.59 = getv ? :_totalTimeElement;
+        %tmp.60 = getv function %tmp.59 :setText;
+        %tmp.62 = lgetv %formattedTime.5;
+        invoke %tmp.59 %tmp.60(%tmp.62);
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_76_56_stop:
+    }
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 91; ]
+    function setCurrentTimeValue(value as Number) as Void {
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_91_54_start:
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 93 4 ]
+        [ "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_91_54_start" "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_91_54_stop" ]
+        %seconds.1 = local;
+        %tmp.2 = lgetv %value;
+        %tmp.3 = 1000;
+        %tmp.4 = div %tmp.2 %tmp.3;
+        lputv %seconds.1 %tmp.4;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 94 4 ]
+        [ "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_91_54_start" "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_91_54_stop" ]
+        %milliseconds.2 = local;
+        %tmp.6 = lgetv %value;
+        %tmp.7 = 1000;
+        %tmp.8 = mod %tmp.6 %tmp.7;
+        lputv %milliseconds.2 %tmp.8;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 97 4 ]
+        [ "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_91_54_start" "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_91_54_stop" ]
+        %formattedTime.3 = local;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_97_25_begin:
+        %tmp.10 = lgetv %seconds.1;
+        %tmp.11 = 10;
+        %tmp.12 = lt %tmp.10 %tmp.11;
+        bf %tmp.12 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_97_25_false;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_97_25_true:
+        %tmp.13 = "0";
+        push %tmp.13;
+        goto @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_97_25_end;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_97_25_false:
+        %tmp.14 = "";
+        push %tmp.14;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_97_25_end:
+        %tmp.15 = phi [%tmp.12 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_97_25_begin] [%tmp.13 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_97_25_true] [%tmp.14 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_97_25_false] [%tmp.15 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_97_25_end];
+        %tmp.16 = lgetv %seconds.1;
+        %tmp.17 = getv function %tmp.16 :toString;
+        %tmp.18 = invoke %tmp.16 %tmp.17();
+        %tmp.19 = add %tmp.15 %tmp.18;
+        %tmp.20 = ".";
+        %tmp.21 = add %tmp.19 %tmp.20;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_25_begin:
+        %tmp.23 = lgetv %milliseconds.2;
+        %tmp.24 = 10;
+        %tmp.25 = lt %tmp.23 %tmp.24;
+        bf %tmp.25 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_25_false;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_25_true:
+        %tmp.26 = "0";
+        push %tmp.26;
+        goto @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_25_end;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_25_false:
+        %tmp.27 = "";
+        push %tmp.27;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_25_end:
+        %tmp.28 = phi [%tmp.25 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_25_begin] [%tmp.26 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_25_true] [%tmp.27 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_25_false] [%tmp.28 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_25_end];
+        %tmp.29 = add %tmp.21 %tmp.28;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_58_begin:
+        %tmp.31 = lgetv %milliseconds.2;
+        %tmp.32 = 10;
+        %tmp.33 = lt %tmp.31 %tmp.32;
+        bf %tmp.33 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_58_false;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_58_true:
+        %tmp.34 = "0";
+        push %tmp.34;
+        goto @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_58_end;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_58_false:
+        %tmp.35 = "";
+        push %tmp.35;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_58_end:
+        %tmp.36 = phi [%tmp.33 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_58_begin] [%tmp.34 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_58_true] [%tmp.35 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_58_false] [%tmp.36 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_98_58_end];
+        %tmp.37 = add %tmp.29 %tmp.36;
+        %tmp.38 = lgetv %milliseconds.2;
+        %tmp.39 = getv function %tmp.38 :toString;
+        %tmp.40 = invoke %tmp.38 %tmp.39();
+        %tmp.41 = add %tmp.37 %tmp.40;
+        lputv %formattedTime.3 %tmp.41;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 100 4 ]
+        %tmp.43 = getv ? :_currentTimerElement;
+        %tmp.44 = getv function %tmp.43 :setText;
+        %tmp.46 = lgetv %formattedTime.3;
+        invoke %tmp.43 %tmp.44(%tmp.46);
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_91_54_stop:
+    }
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 104; ]
+    function updateRepsValue(Reps as Number) as Void {
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_104_53_start:
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 107 8 ]
+        [ "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_104_53_start" "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_104_53_stop" ]
+        %multipleSign.1 = local;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_107_27_begin:
+        %tmp.2 = lgetv %Reps;
+        %tmp.3 = 1;
+        %tmp.4 = eq %tmp.2 %tmp.3;
+        bf %tmp.4 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_107_27_false;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_107_27_true:
+        %tmp.5 = "";
+        push %tmp.5;
+        goto @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_107_27_end;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_107_27_false:
+        %tmp.6 = "s";
+        push %tmp.6;
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_107_27_end:
+        %tmp.7 = phi [%tmp.4 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_107_27_begin] [%tmp.5 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_107_27_true] [%tmp.6 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_107_27_false] [%tmp.7 @_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_107_27_end];
+        lputv %multipleSign.1 %tmp.7;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 108 8 ]
+        [ "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_104_53_start" "_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_104_53_stop" ]
+        %formattedValue.2 = local;
+        %tmp.8 = lgetv %Reps;
+        %tmp.9 = getv function %tmp.8 :toString;
+        %tmp.10 = invoke %tmp.8 %tmp.9();
+        %tmp.11 = " rep";
+        %tmp.12 = add %tmp.10 %tmp.11;
+        %tmp.14 = lgetv %multipleSign.1;
+        %tmp.15 = add %tmp.12 %tmp.14;
+        lputv %formattedValue.2 %tmp.15;
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc" 110 8 ]
+        %tmp.17 = getv ? :_RepsElement;
+        %tmp.18 = getv function %tmp.17 :setText;
+        %tmp.20 = lgetv %formattedValue.2;
+        invoke %tmp.17 %tmp.18(%tmp.20);
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpView_mc_104_53_stop:
+    }
+}
+[ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpView.mc"; @line = 1; ]
+<init> {
+}

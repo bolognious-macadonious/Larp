@@ -1,0 +1,35 @@
+<layout id="MainLayout">
+    <label
+        id="Timer_delay"
+        text="{timer}"
+        x="30%"
+        y="20%"
+        font="Gfx.FONT_SMALL"
+        justification="Graphics.TEXT_JUSTIFY_CENTER" 
+    />
+    <label
+        id="Current_timer"
+        text="{current_timer_text}"
+        x="center"
+        y="center"
+        font="Gfx.FONT_NUMBER_THAI_HOT"
+        justification="Graphics.TEXT_JUSTIFY_CENTER" 
+    />
+    <label
+        id="Reps"
+        text="{reps_text}"
+        x="center"
+        y="70%"
+        font="Gfx.FONT_SMALL"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+    />
+    <label
+        id="Total_time"
+        text="{total_time_text}"
+        x="82%"
+        y="11%"
+        font="Gfx.FONT_TINY"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+    />
+</layout>
+

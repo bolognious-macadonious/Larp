@@ -1,0 +1,28 @@
+[ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpDelegate.mc"; @line = 1; ]
+import Toybox.Lang;
+[ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpDelegate.mc"; @line = 2; ]
+import Toybox.WatchUi;
+[ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpDelegate.mc"; @line = 3; ]
+import Toybox.System;
+[ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpDelegate.mc"; @line = 5; ]
+class LarpDelegate extends WatchUi.BehaviorDelegate{
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpDelegate.mc"; @line = 5; ]
+    <init> {
+    }
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpDelegate.mc"; @line = 5; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpDelegate.mc"; @line = 7; ]
+    function initialize() as Void {
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpDelegate_mc_7_26_start:
+[ "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpDelegate.mc" 8 8 ]
+        %tmp.2 = getv ? :BehaviorDelegate;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+_Users_papajohns_Desktop_Dev_Garmin_Larp_source_LarpDelegate_mc_7_26_stop:
+    }
+}
+[ @file = "/Users/papajohns/Desktop/Dev/Garmin/Larp/source/LarpDelegate.mc"; @line = 1; ]
+<init> {
+}
